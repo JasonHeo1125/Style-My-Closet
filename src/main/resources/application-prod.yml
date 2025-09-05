@@ -1,3 +1,10 @@
+recommendation:
+  engine: ${RECOMMENDATION_ENGINE:local}
+
+external-ml:
+  huggingface:
+    base-url: ${HUGGINGFACE_BASE_URL:https://api-inference.huggingface.co}
+    token: ${HUGGINGFACE_TOKEN:}
 spring:
   datasource:
     url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}

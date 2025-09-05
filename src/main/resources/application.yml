@@ -101,6 +101,14 @@ external:
     rest-api-key: ${REST_API_KEY}
     base-url: https://dapi.kakao.com/v2/local/geo/coord2regioncode.json
 
+recommendation:
+  engine: ${RECOMMENDATION_ENGINE:local} # local | huggingface
+
+external-ml:
+  huggingface:
+    base-url: https://api-inference.huggingface.co
+    token: ${HUGGINGFACE_TOKEN:}
+
 security:
   jwt:
     secret: ${SECURITY_JWT_SECRET}

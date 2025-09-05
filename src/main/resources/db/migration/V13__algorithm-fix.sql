@@ -21,8 +21,5 @@ ALTER TABLE clothing_conditions
     ADD COLUMN length SMALLINT;
 ALTER TABLE clothing_conditions
     ADD COLUMN material SMALLINT;
-ALTER TABLE clothing_conditions
-    DROP COLUMN embedding;
-ALTER TABLE clothing_conditions
-    ADD COLUMN embedding VECTOR(44);
+-- embedding 컬럼 관련 작업 제거됨 (Hugging Face로 전환)
 

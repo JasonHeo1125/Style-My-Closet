@@ -8,6 +8,8 @@ spring:
       maximum-pool-size: 10
       minimum-idle: 5
       idle-timeout: 60000
+  flyway:
+    enabled: true
   batch:
     jdbc:
       initialize-schema: always
@@ -26,7 +28,21 @@ management:
     mail:
       enabled: false
 
+security:
+  jwt:
+    secret: ${SECURITY_JWT_SECRET}
+    access-token-validity-seconds: ${SECURITY_JWT_ACCESS_TOKEN_VALIDITY_SECONDS:3600}
+    refresh-token-validity-seconds: ${SECURITY_JWT_REFRESH_TOKEN_VALIDITY_SECONDS:86400}
+
 logging:
   level:
     com.stylemycloset: DEBUG
     org.hibernate.SQL: DEBUG
+
+recommendation:
+  engine: ${RECOMMENDATION_ENGINE:local}
+
+external-ml:
+  huggingface:
+    base-url: ${HUGGINGFACE_BASE_URL:https://api-inference.huggingface.co}
+    token: ${HUGGINGFACE_TOKEN:}

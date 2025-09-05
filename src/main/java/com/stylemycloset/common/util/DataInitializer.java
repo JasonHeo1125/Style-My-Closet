@@ -4,13 +4,9 @@ import com.stylemycloset.clothes.entity.attribute.ClothesAttributeDefinition;
 import com.stylemycloset.clothes.entity.attribute.ClothesAttributeSelectableValue;
 import com.stylemycloset.clothes.repository.attribute.ClothesAttributeDefinitionRepository;
 import com.stylemycloset.clothes.repository.attribute.ClothesAttributeDefinitionSelectableRepository;
-import com.stylemycloset.recommendation.entity.ClothingCondition;
 import com.stylemycloset.recommendation.entity.Color;
 import com.stylemycloset.recommendation.entity.Length;
 import com.stylemycloset.recommendation.entity.Material;
-import com.stylemycloset.recommendation.mapper.ClothingConditionMapper;
-import com.stylemycloset.recommendation.repository.ClothingConditionRepository;
-import com.stylemycloset.recommendation.util.MeaningfulDummyGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -21,24 +17,13 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class DataInitializer implements CommandLineRunner {
 
-    private final ClothingConditionRepository clothingConditionRepository;
-    private final ClothingConditionMapper clothingConditionMapper;
     private final ClothesAttributeDefinitionRepository definitionRepository;
     private final ClothesAttributeDefinitionSelectableRepository valueRepository;
 
     @Override
     public void run(String... args) {
-        if (clothingConditionRepository.count() == 0) {
-            List<ClothingCondition> dummyData;
-            List<ClothingCondition> dummys = MeaningfulDummyGenerator.generateMeaningfulDummyList();
-
-            dummyData = dummys.stream()
-                .map(clothingConditionMapper::withVector)
-                .toList();
-
-            clothingConditionRepository.saveAll(dummyData);
-
-        }
+        // pgVector/XGBoost 더미 데이터 생성 제거됨 (Hugging Face로 전환)
+        
         // enum 기반 속성 초기화
         initializeAttribute("color", Color.values());
         initializeAttribute("length", Length.values());

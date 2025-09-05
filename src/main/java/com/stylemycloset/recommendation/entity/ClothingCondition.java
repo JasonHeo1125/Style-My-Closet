@@ -1,15 +1,11 @@
 package com.stylemycloset.recommendation.entity;
 
 
-import com.stylemycloset.common.util.VectorType;
 import com.stylemycloset.user.entity.Gender;
 import com.stylemycloset.weather.entity.Weather.AlertType;
 import com.stylemycloset.weather.entity.Weather.SkyStatus;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.annotations.Type;
-import org.hibernate.type.SqlTypes;
 
 
 
@@ -54,11 +50,6 @@ public class ClothingCondition {
 
     // 추천 여부 (1=추천, 0=비추천)
     private Boolean label;
-
-    @Type(VectorType.class)
-    @JdbcTypeCode(SqlTypes.OTHER)
-    @Column(columnDefinition = "vector(44)")
-    private float[] embedding;
 
 
 }
